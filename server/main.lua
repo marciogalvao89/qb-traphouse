@@ -177,7 +177,7 @@ RegisterServerEvent('qb-traphouse:server:TakeMoney', function(TraphouseId)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if Config.TrapHouses[TraphouseId].money ~= 0 then
-        Player.Functions.AddMoney('cash', Config.TrapHouses[TraphouseId].money)
+        Player.Functions.AddMoney('cash', Config.TrapHouses[TraphouseId].money, "TrapHouse")
         Config.TrapHouses[TraphouseId].money = 0
         TriggerClientEvent('qb-traphouse:client:SyncData', -1, TraphouseId, Config.TrapHouses[TraphouseId])
     else
@@ -199,7 +199,7 @@ RegisterServerEvent('qb-traphouse:server:RobNpc', function(Traphouse)
         TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["stickynote"], "add")
     else
         local amount = math.random(1, 80)
-        Player.Functions.AddMoney('cash', amount)
+        Player.Functions.AddMoney('cash', amount, "TrapHouse")
     end
 end)
 
